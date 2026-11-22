@@ -9,8 +9,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <None Include="../orders_log.csv" Link="orders_log.csv">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    
+    <ItemGroup>
         <ProjectReference Include="..\Application\Application.csproj" />
-        <ProjectReference Include="..\Infrastracture\Infrastracture.csproj" />
+        <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,27 +1,25 @@
-﻿using System.Data;
-using ConsoleApp1.Application;
-using ConsoleApp1.Infrastracture;
+﻿using ConsoleApp1.Application;
+using ConsoleApp1.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-
+using ConsoleApp1.Domain;
 
 namespace ConsoleApp1.Presentation;
 
-
-class Program
+internal static class Program
 {
-
     private static void Main()
     {
+        var userInput = UserInput.Input();
         var serviceCollection = new ServiceCollection();
 
-        serviceCollection.AddApplication();
-        serviceCollection.AddInfrastracture();
+        serviceCollection.AddPresentation(userInput);
+        serviceCollection.AddApplication(userInput);
+        serviceCollection.AddInfrastructure();
         
         var provider  = serviceCollection.BuildServiceProvider();
 
         var application = provider.GetRequiredService<StartApplication>();
-        var filePath = @"D:\Programming\.NET\ConsoleApp1\orders_log.csv";
         
-        application.Run(filePath);
+        application.Run();
     }
 }
